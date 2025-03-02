@@ -7,6 +7,8 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+int count = 0;
+
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
@@ -17,11 +19,15 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text('Dive In')],
+          children: [Text('Dive In'), Text(count.toString())],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            count = count + 1;
+          });
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
