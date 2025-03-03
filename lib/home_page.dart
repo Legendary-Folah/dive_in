@@ -1,17 +1,14 @@
+import 'package:dive_in_app/logic/counter_provider.dart';
+import 'package:dive_in_app/logic/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends ConsumerWidget {
   const MyHomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-int count = 0;
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final count = ref.watch(counterProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -19,14 +16,12 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text('Dive In'), Text(count.toString())],
+          children: [Text('Dive In'), Text('Count: $count')],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            count = count + 1;
-          });
+          ref.read(counterProvider.notifier).state + 1;
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
