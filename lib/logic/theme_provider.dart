@@ -2,14 +2,16 @@ import 'package:dive_in_app/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final appThemeProvider = StateProvider<bool>((ref) => false);
+final themeProvider = StateProvider<bool>((ref) {
+  return false;
+});
 
-final themeProvider = Provider<ThemeData>((ref) {
-  final isDarkMode = ref.watch(appThemeProvider);
+final appThemeProvider = Provider<ThemeData>((ref) {
+  final isDarkMode = ref.watch(themeProvider);
   return isDarkMode
       ? ThemeData.dark()
       : ThemeData.light().copyWith(
         scaffoldBackgroundColor: ColorsConst.white,
-        appBarTheme: AppBarTheme(color: ColorsConst.white),
+        appBarTheme: AppBarTheme(backgroundColor: ColorsConst.white),
       );
 });

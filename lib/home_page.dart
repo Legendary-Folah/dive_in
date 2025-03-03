@@ -1,4 +1,3 @@
-import 'package:dive_in_app/constants/colors.dart';
 import 'package:dive_in_app/logic/counter_provider.dart';
 import 'package:dive_in_app/logic/theme_provider.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +9,13 @@ class MyHomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final count = ref.watch(counterProvider);
-    final darkMode = ref.watch(appThemeProvider);
+    final darkMode = ref.watch(themeProvider);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ColorsConst.white,
         actions: [
           IconButton(
             onPressed: () {
-              ref.read(themeProvider);
+              ref.read(themeProvider.notifier).state = !darkMode;
             },
             icon: darkMode ? Icon(Icons.light_mode) : Icon(Icons.dark_mode),
           ),
@@ -25,7 +23,7 @@ class MyHomePage extends ConsumerWidget {
       ),
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [Text('Dive In'), Text('Count: $count')],
         ),
       ),
