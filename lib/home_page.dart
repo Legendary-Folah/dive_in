@@ -1,3 +1,4 @@
+import 'package:dive_in_app/constants/colors.dart';
 import 'package:dive_in_app/logic/counter_provider.dart';
 import 'package:dive_in_app/logic/theme_provider.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +10,18 @@ class MyHomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final count = ref.watch(counterProvider);
+    final darkMode = ref.watch(appThemeProvider);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: ColorsConst.white,
+        actions: [
+          IconButton(
+            onPressed: () {
+              ref.read(themeProvider);
+            },
+            icon: darkMode ? Icon(Icons.light_mode) : Icon(Icons.dark_mode),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Column(
