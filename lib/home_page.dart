@@ -12,6 +12,13 @@ class MyHomePage extends ConsumerWidget {
     final darkMode = ref.watch(themeProvider);
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            ref.invalidate(counterProvider);
+            // ref.refresh(counterProvider);
+          },
+          icon: Icon(Icons.refresh),
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -24,12 +31,12 @@ class MyHomePage extends ConsumerWidget {
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [Text('Dive In'), Text('Count: $count')],
+          children: [Text('Dive In'), Text('Count: ${count.toString()}')],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          ref.read(counterProvider.notifier).state + 1;
+          ref.read(counterProvider.notifier).increment();
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
