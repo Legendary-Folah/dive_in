@@ -15,7 +15,6 @@ class MyHomePage extends ConsumerWidget {
         leading: IconButton(
           onPressed: () {
             ref.invalidate(counterProvider);
-            // ref.refresh(counterProvider);
           },
           icon: Icon(Icons.refresh),
         ),
