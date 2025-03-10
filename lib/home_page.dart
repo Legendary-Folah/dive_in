@@ -30,7 +30,12 @@ class MyHomePage extends ConsumerWidget {
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [Text('Dive In'), Text('Count: ${count.toString()}')],
+          spacing: 10,
+          children: [
+            Text('Dive In'),
+            SizedBox(height: 5),
+            Text('Count: ${count.toString()}'),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
