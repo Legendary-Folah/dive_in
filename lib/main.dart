@@ -18,7 +18,7 @@ class MyApp extends ConsumerWidget {
     return MaterialApp(
       theme: theme,
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(),
+      home: const LearnHome(),
     );
   }
 }
