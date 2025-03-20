@@ -1,4 +1,4 @@
-import 'package:dive_in_app/learn_home.dart';
+import 'package:dive_in_app/presentation/screens/learn_home.dart';
 import 'package:dive_in_app/logic/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
