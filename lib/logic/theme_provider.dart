@@ -1,4 +1,4 @@
-import 'package:dive_in_app/constants/colors.dart';
+import 'package:dive_in_app/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
