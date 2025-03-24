@@ -27,7 +27,8 @@ class LearnHome extends ConsumerWidget {
           ),
         ],
       ),
-      body: SafeArea(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           spacing: 10,

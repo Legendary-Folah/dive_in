@@ -4,11 +4,11 @@ class CounterNotifier extends StateNotifier<int> {
   // Initializing StateNotifier
   CounterNotifier() : super(0);
   void increment() {
-    state = state++;
+    state = state + 1;
   }
 
   void decrement() {
-    state = state--;
+    state = state - 1;
   }
 }
 
