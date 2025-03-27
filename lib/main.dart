@@ -1,5 +1,4 @@
 import 'package:dive_in_app/presentation/screens/home_page.dart';
-import 'package:dive_in_app/presentation/screens/learn_home.dart';
 import 'package:dive_in_app/logic/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
