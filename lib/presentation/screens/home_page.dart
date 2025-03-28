@@ -1,13 +1,15 @@
+import 'package:dive_in_app/logic/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -22,10 +24,49 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [],
+              children: [allPokemonList(context, ref)],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget allPokemonList(BuildContext context, WidgetRef ref) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final darkMode = ref.watch(themeProvider);
+    return SizedBox(
+      width: width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                onPressed: () {
+                  ref.read(themeProvider.notifier).state = !darkMode;
+                },
+                icon: darkMode ? Icon(Icons.light_mode) : Icon(Icons.dark_mode),
+              ),
+            ],
+          ),
+          Text(
+            'All Pokemons',
+            style: TextStyle(fontSize: 22, letterSpacing: 2.0),
+          ),
+          SizedBox(
+            height: height * 0.6,
+            child: ListView.builder(
+              itemCount: 0,
+              itemBuilder: (context, index) {
+                return ListTile();
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
