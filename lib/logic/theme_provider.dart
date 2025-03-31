@@ -1,6 +1,7 @@
 import 'package:dive_in_app/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final themeProvider = StateProvider<bool>((ref) {
   return false;
@@ -13,6 +14,10 @@ final appThemeProvider = Provider<ThemeData>((ref) {
       : ThemeData.light().copyWith(
         scaffoldBackgroundColor: ColorsConst.white,
         appBarTheme: AppBarTheme(backgroundColor: ColorsConst.white),
-        // textTheme: TextTheme()
+        textTheme: TextTheme(
+          bodySmall: TextStyle(
+            fontFamily: GoogleFonts.quattrocentoSans.toString(),
+          ),
+        ),
       );
 });
