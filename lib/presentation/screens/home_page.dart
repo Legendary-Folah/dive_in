@@ -55,7 +55,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
           Text(
             'All Pokemons',
-            style: TextStyle(fontSize: 22, letterSpacing: 2.0),
+            style: TextStyle(fontSize: 20, letterSpacing: 2.0),
           ),
           SizedBox(
             height: height * 0.6,
