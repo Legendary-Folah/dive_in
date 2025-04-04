@@ -9,7 +9,7 @@ final themeProvider = StateProvider<bool>((ref) {
 final appThemeProvider = Provider<ThemeData>((ref) {
   final isDarkMode = ref.watch(themeProvider);
   return isDarkMode
-      ? ThemeData.dark().copyWith()
+      ? ThemeData.dark()
       : ThemeData.light().copyWith(
         scaffoldBackgroundColor: ColorsConst.white,
         appBarTheme: AppBarTheme(backgroundColor: ColorsConst.white),
