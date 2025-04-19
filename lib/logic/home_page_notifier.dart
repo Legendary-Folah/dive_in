@@ -5,6 +5,8 @@ class HomePageNotifier extends StateNotifier<HomePageData> {
   HomePageNotifier() : super(HomePageData.initial());
 }
 
-final homePageProvider = StateNotifierProvider((ref) {
+final homePageProvider = StateNotifierProvider<HomePageNotifier, HomePageData>((
+  ref,
+) {
   return HomePageNotifier();
 });
