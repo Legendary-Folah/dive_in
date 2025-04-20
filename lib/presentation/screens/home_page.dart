@@ -26,7 +26,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           child: Container(
             width: width,
             padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.sizeOf(context).width * 0.02,
+              horizontal: MediaQuery.sizeOf(context).width * 0.025,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
