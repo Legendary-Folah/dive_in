@@ -1,6 +1,5 @@
 import 'package:dive_in_app/logic/home_page_notifier.dart';
 import 'package:dive_in_app/logic/theme_provider.dart';
-import 'package:dive_in_app/models/page_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
