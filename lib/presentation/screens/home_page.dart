@@ -11,9 +11,6 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
-  // late HomePageNotifier _homePageNotifier;
-  // late HomePageData _homePageData;
-
   @override
   Widget build(BuildContext context) {
     final _homePageNotifier = ref.watch(homePageProvider.notifier);
