@@ -1,11 +1,17 @@
 import 'package:dive_in_app/presentation/screens/home_page.dart';
 import 'package:dive_in_app/logic/theme_provider.dart';
+import 'package:dive_in_app/services/API_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get_it/get_it.dart';
 
-void main() {
-  // debugPaintSizeEnabled = true;
+void main() async {
+  await _setUpServices();
   runApp(ProviderScope(child: const MyApp()));
+}
+
+Future<void> _setUpServices() async {
+  GetIt.instance.registerSingleton<ApiService>(ApiService());
 }
 
 class MyApp extends ConsumerWidget {
