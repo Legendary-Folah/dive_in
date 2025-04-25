@@ -14,3 +14,9 @@ class HomePageNotifier extends StateNotifier<HomePageData> {
 
   Future<void> _setUp() async {}
 }
+
+final homePageProvider = StateNotifierProvider<HomePageNotifier, HomePageData>((
+  ref,
+) {
+  return HomePageNotifier(HomePageData.initial());
+});
