@@ -1,5 +1,6 @@
 import 'package:dive_in_app/logic/home_page_notifier.dart';
 import 'package:dive_in_app/logic/theme_provider.dart';
+import 'package:dive_in_app/models/page_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,10 +12,13 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
+  late HomePageNotifier _homePageNotifier;
+  late HomePageData _homePageData;
+
   @override
   Widget build(BuildContext context) {
-    final _homePageNotifier = ref.watch(homePageProvider.notifier);
-    final _homePageData = ref.watch(homePageProvider);
+    _homePageNotifier = ref.watch(homePageProvider.notifier);
+    _homePageData = ref.watch(homePageProvider);
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
@@ -58,12 +62,12 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
           Text(
             'All Pokemons',
-            style: TextStyle(fontSize: 20, letterSpacing: 2.0),
+            style: TextStyle(fontSize: 20, letterSpacing: 2.5),
           ),
           SizedBox(
             height: height * 0.6,
             child: ListView.builder(
-              itemCount: 0,
+              itemCount: _homePageData.data?.results?.length ?? 0,
               itemBuilder: (context, index) {
                 return ListTile();
               },
