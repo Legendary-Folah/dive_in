@@ -25,6 +25,7 @@ class HomePageNotifier extends StateNotifier<HomePageData> {
       if (response != null && response.data != null) {
         PokemonListData data = PokemonListData.fromJson(response.data);
         state = state.copyWith(data: data);
+        print(state.data?.results?.first);
       }
     } else {}
   }

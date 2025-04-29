@@ -1,6 +1,8 @@
 import 'package:dive_in_app/logic/home_page_notifier.dart';
 import 'package:dive_in_app/logic/theme_provider.dart';
 import 'package:dive_in_app/models/page_data.dart';
+import 'package:dive_in_app/models/pokemon_model.dart';
+import 'package:dive_in_app/presentation/widgets/pokemon_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -69,7 +71,9 @@ class _HomePageState extends ConsumerState<HomePage> {
             child: ListView.builder(
               itemCount: _homePageData.data?.results?.length ?? 0,
               itemBuilder: (context, index) {
-                return ListTile();
+                PokemonListResult pokemonListResult =
+                    _homePageData.data!.results![index];
+                return PokemonListTile(pokemonURL: pokemonListResult.url!);
               },
             ),
           ),
