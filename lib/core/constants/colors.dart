@@ -5,4 +5,6 @@ class ColorsConst {
 
   static const kWhite = Colors.white;
   static const kBlack = Colors.black;
+  static const kGreen = Colors.green;
+  static const kRed = Colors.redAccent;
 }

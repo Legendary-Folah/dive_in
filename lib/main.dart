@@ -1,3 +1,4 @@
+import 'package:dive_in_app/presentation/screens/Dummy/dummy_home.dart';
 import 'package:dive_in_app/presentation/screens/home_page.dart';
 import 'package:dive_in_app/logic/theme_provider.dart';
 import 'package:dive_in_app/services/API_service.dart';
@@ -23,7 +24,7 @@ class MyApp extends ConsumerWidget {
     return MaterialApp(
       theme: theme,
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const DummyHome(),
     );
   }
 }
