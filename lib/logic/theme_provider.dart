@@ -11,7 +11,7 @@ final appThemeProvider = Provider<ThemeData>((ref) {
   return isDarkMode
       ? ThemeData.dark()
       : ThemeData.light().copyWith(
-        scaffoldBackgroundColor: ColorsConst.white,
-        appBarTheme: AppBarTheme(backgroundColor: ColorsConst.white),
+        scaffoldBackgroundColor: ColorsConst.kWhite,
+        appBarTheme: AppBarTheme(backgroundColor: ColorsConst.kWhite),
       );
 });
