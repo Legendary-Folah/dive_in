@@ -1,21 +1,18 @@
 import 'package:dive_in_app/core/constants/colors.dart';
 import 'package:dive_in_app/core/constants/helper_funcs.dart';
+import 'package:dive_in_app/logic/dummy_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DummyTodo extends StatelessWidget {
-  const DummyTodo({
-    super.key,
-    required this.addTodos,
-    required this.titleController,
-    required this.subTitleController,
-  });
-
-  final TextEditingController titleController;
-  final TextEditingController subTitleController;
-  final Future<void> Function(String, String) addTodos;
+class DummyTodo extends ConsumerWidget {
+  const DummyTodo({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final TextEditingController titleController = TextEditingController();
+    final TextEditingController subTitleController = TextEditingController();
+    final todos = ref.watch(todoProvider);
+
     return Scaffold(
       backgroundColor: ColorsConst.kWhite,
       body: SingleChildScrollView(
@@ -50,7 +47,12 @@ class DummyTodo extends StatelessWidget {
                         debugPrint(
                           'Todo successfull added: ${titleController.text} , ${subTitleController.text}',
                         );
-                        addTodos(titleController.text, subTitleController.text);
+                        ref
+                            .read(todoProvider.notifier)
+                            .addTodo(
+                              titleController.text,
+                              subTitleController.text,
+                            );
                         context.showSuccessSnackBar(
                           message: 'Todo added successfully',
                           onDismiss: () {
@@ -67,7 +69,7 @@ class DummyTodo extends StatelessWidget {
                         );
                       }
                     } catch (e) {
-                      print(e);
+                      debugPrint(e.toString());
                     }
                   },
                   child: Text(

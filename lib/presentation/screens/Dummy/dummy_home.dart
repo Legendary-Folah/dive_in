@@ -22,7 +22,7 @@ class _DummyHomeState extends State<DummyHome> {
   Future<void> addTodos(String title, String subTitle) async {
     final uid = Uuid().v4();
     setState(() {
-      dummyList.add(DummyModel(title: title, subTitle: subTitle, id: uid));
+      dummyList.add(DummyModel(title: title, subtitle: subTitle, id: uid));
       titleController.clear();
       subTitleController.clear();
     });
@@ -41,7 +41,7 @@ class _DummyHomeState extends State<DummyHome> {
         ? setState(() {
           dummyList[index] = DummyModel(
             title: title,
-            subTitle: subTitle,
+            subtitle: subTitle,
             id: id,
           );
           debugPrint('Todo with $id updated');
@@ -60,14 +60,7 @@ class _DummyHomeState extends State<DummyHome> {
     return Scaffold(
       appBar: AppBar(title: const Text('Dummy ToDo...'), centerTitle: true),
       backgroundColor: Colors.white,
-      body:
-          _currentIndex == 0
-              ? DummyTodo(
-                addTodos: addTodos,
-                titleController: titleController,
-                subTitleController: subTitleController,
-              )
-              : DummyTodoLists(dummyList: dummyList, removeTodo: removeTodo),
+      body: _currentIndex == 0 ? DummyTodo() : DummyTodoLists(),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.black12,

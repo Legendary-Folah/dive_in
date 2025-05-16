@@ -1,15 +1,16 @@
-class DummyModel {
-  String? title;
-  String? subTitle;
-  String? id;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  DummyModel({this.title, this.subTitle, this.id});
+part 'dummy_model.freezed.dart';
+part 'dummy_model.g.dart';
 
-  DummyModel.fromJson(Map<String, dynamic> json) {
-    DummyModel(
-      title: json['title'],
-      subTitle: json['subTitle'],
-      id: json['id'],
-    );
-  }
+@freezed
+abstract class DummyModel with _$DummyModel {
+  const factory DummyModel({
+    required String id,
+    required String title,
+    required String subtitle,
+  }) = _DummyModel;
+
+  factory DummyModel.fromJson(Map<String, dynamic> json) =>
+      _$DummyModelFromJson(json);
 }

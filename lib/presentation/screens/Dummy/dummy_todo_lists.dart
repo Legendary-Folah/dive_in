@@ -1,25 +1,18 @@
 import 'package:dive_in_app/core/constants/colors.dart';
 import 'package:dive_in_app/core/constants/helper_funcs.dart';
+import 'package:dive_in_app/logic/dummy_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../models/dummy_model.dart';
-
-class DummyTodoLists extends StatefulWidget {
-  const DummyTodoLists({
-    super.key,
-    required this.dummyList,
-    required this.removeTodo,
-  });
-
-  final List<DummyModel> dummyList;
-  final Future<void> Function(String) removeTodo;
+class DummyTodoLists extends ConsumerStatefulWidget {
+  const DummyTodoLists({super.key});
 
   @override
-  State<DummyTodoLists> createState() => _DummyTodoListsState();
+  ConsumerState<DummyTodoLists> createState() => _DummyTodoListsState();
 }
 
-class _DummyTodoListsState extends State<DummyTodoLists> {
+class _DummyTodoListsState extends ConsumerState<DummyTodoLists> {
   bool _isLoading = true;
 
   @override
@@ -34,6 +27,7 @@ class _DummyTodoListsState extends State<DummyTodoLists> {
 
   @override
   Widget build(BuildContext context) {
+    final todoList = ref.watch(todoProvider);
     return Scaffold(
       backgroundColor: ColorsConst.kWhite,
       body: Padding(
@@ -41,7 +35,7 @@ class _DummyTodoListsState extends State<DummyTodoLists> {
         child:
             _isLoading
                 ? Center(child: CircularProgressIndicator())
-                : widget.dummyList.isEmpty
+                : todoList.isEmpty
                 ? Center(
                   child: Column(
                     spacing: 30,
@@ -56,27 +50,35 @@ class _DummyTodoListsState extends State<DummyTodoLists> {
                   ),
                 )
                 : ListView.builder(
-                  itemCount: widget.dummyList.length,
+                  itemCount: todoList.length,
                   itemBuilder: (ctx, index) {
-                    final todo = widget.dummyList[index];
-                    return ListTile(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      textColor: ColorsConst.kWhite,
-                      tileColor: Colors.black45,
-                      title: Text(todo.title ?? ''),
-                      subtitle: Text(todo.subTitle ?? ''),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.delete),
-                        onPressed: () {
-                          widget.removeTodo(todo.id ?? '');
-                          debugPrint('Todo with ${todo.id} removed');
-                          context.showErrorSnackBar(
-                            message: 'Todo id : ${todo.id} removed',
-                          );
-                        },
-                      ),
+                    final todo = todoList[index];
+                    return Column(
+                      spacing: 10,
+                      children: [
+                        ListTile(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          textColor: ColorsConst.kWhite,
+                          tileColor: Colors.black45,
+                          title: Text(todo.title),
+                          subtitle: Text(todo.subtitle),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () {
+                              debugPrint('Todo with ${todo.id} removed');
+                              ref
+                                  .read(todoProvider.notifier)
+                                  .removeTodo(todo.id);
+                              context.showErrorSnackBar(
+                                message: 'Todo: ${todo.title} removed',
+                              );
+                            },
+                          ),
+                        ),
+                        Divider(),
+                      ],
                     );
                   },
                 ),
